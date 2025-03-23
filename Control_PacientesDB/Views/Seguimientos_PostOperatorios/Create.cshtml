@@ -1,0 +1,76 @@
+﻿@model Control_PacientesDB.Models.Seguimientos_PostOperatorios
+
+@{
+    ViewData["Title"] = "Registrar Nuevo Seguimiento";
+}
+
+<h1>Registrar Nuevo Seguimiento</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Selección de Médico -->
+            <div class="form-group">
+                <select asp-for="Codigo_medico" class="input" asp-items="ViewBag.Codigo_medico">
+                    <option value="">Seleccione un Médico</option>
+                </select>
+                <span asp-validation-for="Codigo_medico" class="text-danger"></span>
+            </div>
+
+            <!-- Selección de Paciente -->
+            <div class="form-group">
+                <select asp-for="Codigo_paciente" class="input" asp-items="ViewBag.Codigo_paciente">
+                    <option value="">Seleccione un Paciente</option>
+                </select>
+                <span asp-validation-for="Codigo_paciente" class="text-danger"></span>
+            </div>
+
+            <!-- Selección de Medicamento -->
+            <div class="form-group">
+                <select asp-for="Codigo_Medicamento" class="input" asp-items="ViewBag.Codigo_Medicamento">
+                    <option value="">Seleccione un Medicamento</option>
+                </select>
+                <span asp-validation-for="Codigo_Medicamento" class="text-danger"></span>
+            </div>
+
+            <!-- Fecha de Control -->
+            <div class="form-group">
+                <input asp-for="Fecha_Control" class="input" type="date" autocomplete="off" placeholder="Fecha de Control" />
+                <span asp-validation-for="Fecha_Control" class="text-danger"></span>
+            </div>
+
+            <!-- Programación de Próxima Cita -->
+            <div class="form-group">
+                <input asp-for="Programacion_ProximaCita" class="input" type="date" autocomplete="off" placeholder="Próxima Cita" />
+                <span asp-validation-for="Programacion_ProximaCita" class="text-danger"></span>
+            </div>
+
+            <!-- Observaciones -->
+            <div class="form-group">
+                <input asp-for="Observaciones" class="input" autocomplete="off" placeholder="Observaciones" />
+                <span asp-validation-for="Observaciones" class="text-danger"></span>
+            </div>
+
+            <!-- Botón Registrar -->
+            <div class="form-group">
+                <button type="submit" class="button">Registrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Botón Volver a la lista -->
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

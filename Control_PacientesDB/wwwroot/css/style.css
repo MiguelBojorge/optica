@@ -1,0 +1,171 @@
+﻿/* Estilos generales */
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+/* Estilo para el formulario */
+h1 {
+    color: #f54291; /* Rosado fuerte para el título */
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('imgfondo.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: #fff; /* Fondo blanco */
+    font-family: 'Roboto', sans-serif;
+    color: #333; /* Texto principal */
+}
+
+
+/* Títulos de secciones */
+h4 {
+    color: #f54291; /* Rosado */
+    margin-top: 20px;
+    border-bottom: 2px solid #f54291; /* Línea decorativa */
+    display: inline-block;
+    padding-bottom: 5px;
+}
+
+h3 {
+    color: #fff; /* blanco */
+    border-bottom: 2px solid #f54291; /* Línea decorativa */
+
+}
+
+p {
+    border-bottom: 2px solid #f54291; /* Línea decorativa */
+    color: #fff; /* idk */
+    box-shadow: 0 4px 8px #fff;
+}
+
+/* Navbar */
+.navbar {
+    background-color: #ffffff; /* Blanco */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Sombra para la navbar */
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    color: #f54291 !important; /* Texto rosado */
+    font-weight: bold;
+}
+
+.navbar .navbar-nav .nav-link {
+    position: relative;
+    color: #333 !important; /* Color de los enlaces */
+    font-size: 20px;
+    padding: 0.5rem 1rem;
+    transition: color 0.3s, background-color 0.3s;
+}
+
+    .navbar .navbar-nav .nav-link:hover {
+        color: #ffffff !important; /* Blanco al pasar el mouse */
+        background-color: #f54291; /* Fondo rosado */
+        border-radius: 5px; /* Bordes redondeados al hacer hover */
+    }
+
+/* Tablas */
+.table {
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+    .table th {
+        background-color: #ffffff; /* Blanco */
+        color: #f54291; /* Rosado */
+        text-transform: uppercase;
+    }
+
+    .table td, .table th {
+        padding: 15px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .table tr:hover {
+        background-color: #f7c6d9; /* Fondo rosado claro al pasar el mouse */
+    }
+
+    .table a {
+        display: inline-block;
+        padding: 8px 12px;
+        margin: 0 5px;
+        text-decoration: none;
+        color: white;
+        background-color: #f54291; /* Rosado fuerte para botones */
+        border-radius: 4px;
+        transition: background-color 0.3s;
+    }
+
+        .table a:hover {
+            background-color: #c72b6c; /* Tonalidad más oscura al pasar el mouse */
+        }
+
+.create-button {
+    display: inline-block;
+    padding: 10px 15px;
+    color: white;
+    background-color: #f54291; /* Rosado para el botón 'Create New' */
+    border-radius: 4px;
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: background-color 0.3s;
+}
+
+    .create-button:hover {
+        background-color: #c72b6c; /* Color más oscuro al pasar el mouse */
+        color: #fff;
+    }
+
+/* Botones generales */
+button {
+    padding: 15px 25px;
+    border: unset;
+    border-radius: 15px;
+    color: #ffffff;
+    background-color: #f54291; /* Fondo rosado */
+    font-weight: bold;
+    font-size: 16px;
+    box-shadow: 4px 8px 19px -3px rgba(0, 0, 0, 0.27);
+    transition: all 250ms;
+    overflow: hidden;
+}
+
+    button:hover {
+        background-color: #c72b6c; /* Oscurecer botón al pasar el mouse */
+        color: #fff;
+    }
+
+/* Inputs */
+.input {
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    padding: 1em;
+    background-color: #ffffff; /* Fondo blanco */
+    box-shadow: inset 2px 5px 10px rgba(0, 0, 0, 0.1);
+    transition: 300ms ease-in-out;
+}
+
+    .input:focus {
+        background-color: #f7c6d9; /* Fondo rosado claro al enfocar */
+        transform: scale(1.05);
+        box-shadow: 0 4px 15px rgba(245, 66, 145, 0.4);
+    }

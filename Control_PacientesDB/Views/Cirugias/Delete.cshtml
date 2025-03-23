@@ -1,0 +1,51 @@
+﻿@model Control_PacientesDB.Models.Cirugias
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<h1>Delete</h1>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Cirugias</h4>
+    <hr />
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Diagnostico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Diagnostico.Codigo_diagnostico)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Medico)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Medico.NombreCompleto)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Fecha_cirugia)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Fecha_cirugia)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Hora_inicio)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hora_inicio)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.Hora_fin)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.Hora_fin)
+        </dd>
+    </dl>
+    
+    <form asp-action="Delete">
+        <input type="hidden" asp-for="Codigo_cirugia" />
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Volver a la Lista</a>
+    </form>
+</div>

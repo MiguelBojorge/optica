@@ -1,0 +1,56 @@
+﻿@model Control_PacientesDB.Models.Cirugias
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Editar información de cirugia</h1>
+
+<h4>Cirugias</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Codigo_cirugia" />
+            <div class="form-group">
+                <label asp-for="Codigo_diagnostico" class="control-label"></label>
+                <select asp-for="Codigo_diagnostico" class="form-control" asp-items="ViewBag.Codigo_diagnostico"></select>
+                <span asp-validation-for="Codigo_diagnostico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Codigo_medico" class="control-label"></label>
+                <select asp-for="Codigo_medico" class="form-control" asp-items="ViewBag.Codigo_medico"></select>
+                <span asp-validation-for="Codigo_medico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha_cirugia" class="control-label"></label>
+                <input asp-for="Fecha_cirugia" class="form-control" />
+                <span asp-validation-for="Fecha_cirugia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hora_inicio" class="control-label"></label>
+                <input asp-for="Hora_inicio" class="form-control" />
+                <span asp-validation-for="Hora_inicio" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Hora_fin" class="control-label"></label>
+                <input asp-for="Hora_fin" class="form-control" />
+                <span asp-validation-for="Hora_fin" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,68 @@
+﻿@model Control_PacientesDB.Models.Cirugias
+
+@{
+    ViewData["Title"] = "Registrar Nueva Cirugía";
+}
+
+<h1>Registrar Nueva Cirugía</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Selección de Diagnóstico -->
+            <div class="form-group">
+                <select asp-for="Codigo_diagnostico" class="input" asp-items="ViewBag.Codigo_diagnostico">
+                    <option value="">Seleccione un Diagnóstico</option>
+                </select>
+                <span asp-validation-for="Codigo_diagnostico" class="text-danger"></span>
+            </div>
+
+            <!-- Selección de Médico -->
+            <div class="form-group">
+                <select asp-for="Codigo_medico" class="input" asp-items="ViewBag.Codigo_medico">
+                    <option value="">Seleccione un Médico</option>
+                </select>
+                <span asp-validation-for="Codigo_medico" class="text-danger"></span>
+            </div>
+
+            <!-- Fecha de Cirugía -->
+            <div class="form-group">
+                <input asp-for="Fecha_cirugia" class="input" type="date" autocomplete="off" placeholder="Fecha de Cirugía" />
+                <span asp-validation-for="Fecha_cirugia" class="text-danger"></span>
+            </div>
+
+            <!-- Hora de Inicio -->
+            <div class="form-group">
+                <input asp-for="Hora_inicio" class="input" type="time" autocomplete="off" placeholder="Hora de Inicio" />
+                <span asp-validation-for="Hora_inicio" class="text-danger"></span>
+            </div>
+
+            <!-- Hora de Fin -->
+            <div class="form-group">
+                <input asp-for="Hora_fin" class="input" type="time" autocomplete="off" placeholder="Hora de Fin" />
+                <span asp-validation-for="Hora_fin" class="text-danger"></span>
+            </div>
+
+            <!-- Botón Registrar -->
+            <div class="form-group">
+                <button type="submit" class="button">Registrar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Botón Volver a la Lista -->
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

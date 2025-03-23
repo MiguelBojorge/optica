@@ -1,0 +1,31 @@
+﻿@model Control_PacientesDB.Models.Cirugias
+
+@{
+    ViewData["Title"] = "Detalles de Cirugía";
+}
+
+<div class="details-container">
+    <h1 class="details-title">Detalles de Cirugía</h1>
+    <dl class="row">
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Diagnostico)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Diagnostico.Codigo_diagnostico)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Medico)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Medico.NombreCompleto)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Fecha_cirugia)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Fecha_cirugia)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Hora_inicio)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Hora_inicio)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Hora_fin)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Hora_fin)</dd>
+    </dl>
+</div>
+
+<!-- Botones de navegación -->
+<div class="d-flex justify-content-between">
+    <a asp-action="Edit" class="btn btn-outline-primary" asp-route-id="@Model?.Codigo_cirugia">
+        <i class="fas fa-edit"></i> Editar
+    </a>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>

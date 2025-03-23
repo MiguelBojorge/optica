@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Control_PacientesDB.Models.Diagnostico>
+
+@{
+    ViewData["Title"] = "Diagnostico";
+}
+
+<h1>Diagnosticos</h1>
+
+<p>
+    <a asp-action="Create" class="create-button">Ingresar nuevo paciente</a>
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                Medico
+            </th>
+            <th>
+                Paciente
+            </th>
+            <th>
+                Valoracion oftalmologica
+            </th>
+            <th>
+                Resultados de Examen de Glucosa
+            </th>
+            <th>
+                Valoracion de Medicina Interna
+            </th>
+            <th>
+                Valoracion Anestesica
+            </th>
+            <th>
+                Fecha de diagnostico
+            </th>
+            <th>
+                Notas de diagnostico
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Medico.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Paciente.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valoracion_oftalmologica)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ResultadosExa_Glucosa)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valoracion_MedInterna)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Valoracion_Anestesia)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Fecha_diagnostico)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notas_diagnostico)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Codigo_diagnostico">Editar</a> |
+                <a asp-action="Details" asp-route-id="@item.Codigo_diagnostico">Detalles</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

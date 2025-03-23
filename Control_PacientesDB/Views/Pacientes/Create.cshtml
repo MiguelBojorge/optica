@@ -1,0 +1,97 @@
+﻿@model Control_PacientesDB.Models.PacienteViewModel
+
+@{
+    ViewData["Title"] = "Introducir Nuevo Paciente";
+}
+
+<h1>Introducir Nuevo Paciente</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Campos de Paciente -->
+            <div class="form-group">
+                <input asp-for="Codigo_paciente" class="input" autocomplete="off" placeholder="Código Paciente" />
+                <span asp-validation-for="Codigo_paciente" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Nombres" class="input" autocomplete="off" placeholder="Nombres" />
+                <span asp-validation-for="Nombres" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Apellidos" class="input" autocomplete="off" placeholder="Apellidos" />
+                <span asp-validation-for="Apellidos" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Cedula" class="input" autocomplete="off" placeholder="Cédula" />
+                <span asp-validation-for="Cedula" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="FechaNac" class="input" type="date" autocomplete="off" placeholder="Fecha de Nacimiento" />
+                <span asp-validation-for="FechaNac" class="text-danger"></span>
+            </div>
+
+            <!-- Campos de Direccion -->
+            <h3>Dirección del Paciente</h3>
+            <div class="form-group">
+                <input asp-for="Id_Direccion" class="input" autocomplete="off" placeholder="ID de la direccion" />
+                <span asp-validation-for="Id_Direccion" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Direccion_Domicilio" class="input" autocomplete="off" placeholder="Dirección del Domicilio" />
+                <span asp-validation-for="Direccion_Domicilio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Ciudad" class="input" autocomplete="off" placeholder="Ciudad" />
+                <span asp-validation-for="Ciudad" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Departamentos" class="input" autocomplete="off" placeholder="Departamento" />
+                <span asp-validation-for="Departamentos" class="text-danger"></span>
+            </div>
+
+            <!-- Campos de Telefono -->
+            <h3>Teléfono del Paciente</h3>
+            <div class="form-group">
+                <input asp-for="ID_Telefono" class="input" autocomplete="off" placeholder="ID del telefono" />
+                <span asp-validation-for="ID_Telefono" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input asp-for="Num_Telefono" class="input" autocomplete="off" placeholder="Número de Teléfono" />
+                <span asp-validation-for="Num_Telefono" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Company" class="input" autocomplete="off" placeholder="Compañía (opcional)" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+
+            <!-- Botón Guardar -->
+            <div class="form-group">
+                <button type="submit" class="button">Guardar paciente</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<!-- Botón Volver a la lista -->
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

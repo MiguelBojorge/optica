@@ -1,0 +1,33 @@
+﻿@model Control_PacientesDB.Models.Seguimientos_PostOperatorios
+
+@{
+    ViewData["Title"] = "Detalles de Seguimiento Post-Operación";
+}
+
+<div class="details-container">
+    <h1 class="details-title">Detalles de Seguimiento Post-Operación</h1>
+    <dl class="row">
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Medico)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Medico.NombreCompleto)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Paciente)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Paciente.NombreCompleto)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Medicamentos)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Medicamentos.Nombre_Medicamento)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Fecha_Control)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Fecha_Control)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Programacion_ProximaCita)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Programacion_ProximaCita)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Observaciones)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Observaciones)</dd>
+    </dl>
+</div>
+
+<!-- Botones de navegación -->
+<div class="d-flex justify-content-between">
+    <a asp-action="Edit" class="btn btn-outline-primary" asp-route-id="@Model?.Codigo_seguimiento">
+        <i class="fas fa-edit"></i> Editar
+    </a>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>

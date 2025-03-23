@@ -1,0 +1,97 @@
+﻿@model Control_PacientesDB.Models.PacienteViewModel
+
+@{
+    ViewData["Title"] = "Editar Paciente";
+}
+
+<h1>Editar Paciente</h1>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Datos de Paciente -->
+            <h4>Información del Paciente</h4>
+            <div class="form-group">
+                <input asp-for="Codigo_paciente" class="input" readonly />
+                <span asp-validation-for="Codigo_paciente" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Nombres" class="input" placeholder="Nombres" />
+                <span asp-validation-for="Nombres" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Apellidos" class="input" placeholder="Apellidos" />
+                <span asp-validation-for="Apellidos" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Cedula" class="input" placeholder="Cédula" />
+                <span asp-validation-for="Cedula" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="FechaNac" class="input" placeholder="Fecha de Nacimiento" />
+                <span asp-validation-for="FechaNac" class="text-danger"></span>
+            </div>
+
+            <!-- Datos de Dirección -->
+            <h4>Dirección</h4>
+            <div class="form-group">
+                <input asp-for="Id_Direccion" class="input" readonly />
+                <span asp-validation-for="Id_Direccion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Direccion_Domicilio" class="input" placeholder="Dirección" />
+                <span asp-validation-for="Direccion_Domicilio" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Ciudad" class="input" placeholder="Ciudad" />
+                <span asp-validation-for="Ciudad" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Departamentos" class="input" placeholder="Departamento" />
+                <span asp-validation-for="Departamentos" class="text-danger"></span>
+            </div>
+
+            <!-- Datos de Teléfono -->
+            <h4>Teléfono</h4>
+            <div class="form-group">
+                <input asp-for="ID_Telefono" class="input" readonly />
+                <span asp-validation-for="ID_Telefono" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Num_Telefono" class="input" placeholder="Número de Teléfono" />
+                <span asp-validation-for="Num_Telefono" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Company" class="input" placeholder="Compañía" />
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="btn">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

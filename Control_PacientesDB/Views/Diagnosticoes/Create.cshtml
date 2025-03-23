@@ -1,0 +1,77 @@
+﻿@model Control_PacientesDB.Models.Diagnostico
+
+@{
+    ViewData["Title"] = "Registrar Nuevo Diagnostico";
+}
+
+<h1>Registrar Nuevo Diagnostico</h1>
+
+<h4>Diagnostico</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <!-- Selección de Médico -->
+            <div class="form-group">
+                <select asp-for="Codigo_medico" class="input" asp-items="ViewBag.Codigo_medico">
+                    <option value="">Seleccione un Médico</option>
+                </select>
+                <span asp-validation-for="Codigo_medico" class="text-danger"></span>
+            </div>
+
+            <!-- Selección de Paciente -->
+            <div class="form-group">
+                <select asp-for="Codigo_paciente" class="input" asp-items="ViewBag.Codigo_paciente">
+                    <option value="">Seleccione un Paciente</option>
+                </select>
+                <span asp-validation-for="Codigo_paciente" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Valoracion_oftalmologica" class="input" autocomplete="off" placeholder="Valoración Oftalmologica" />
+                <span asp-validation-for="Valoracion_oftalmologica" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="ResultadosExa_Glucosa" class="input" autocomplete="off" placeholder="Result. Examen de Glucosa" />
+                <span asp-validation-for="ResultadosExa_Glucosa" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Valoracion_MedInterna" class="input" autocomplete="off" placeholder="Valoración Medica Interna" />
+                <span asp-validation-for="Valoracion_MedInterna" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Valoracion_Anestesia" class="input" autocomplete="off" placeholder="Valoración Anestesia" />
+                <span asp-validation-for="Valoracion_Anestesia" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Fecha_diagnostico" class="input" type="date" autocomplete="off" placeholder="Fecha de Diagnostico" />
+                <span asp-validation-for="Fecha_diagnostico" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input asp-for="Notas_diagnostico" class="input" autocomplete="off" placeholder="Notas de Diagnostico" />
+                <span asp-validation-for="Notas_diagnostico" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <button type="submit" class="button">Guardar Diagnostico</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

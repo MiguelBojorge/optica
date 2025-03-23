@@ -1,0 +1,71 @@
+﻿@model Control_PacientesDB.Models.Diagnostico
+
+@{
+    ViewData["Title"] = "Editar Diagnostico";
+}
+
+<h1>Editar</h1>
+
+<h4>Diagnostico</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Codigo_diagnostico" />
+            <div class="form-group">
+                <label asp-for="Codigo_medico" class="control-label"></label>
+                <select asp-for="Codigo_medico" class="form-control" asp-items="ViewBag.Codigo_medico"></select>
+                <span asp-validation-for="Codigo_medico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Codigo_paciente" class="control-label"></label>
+                <select asp-for="Codigo_paciente" class="form-control" asp-items="ViewBag.Codigo_paciente"></select>
+                <span asp-validation-for="Codigo_paciente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valoracion_oftalmologica" class="control-label"></label>
+                <input asp-for="Valoracion_oftalmologica" class="form-control" />
+                <span asp-validation-for="Valoracion_oftalmologica" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ResultadosExa_Glucosa" class="control-label"></label>
+                <input asp-for="ResultadosExa_Glucosa" class="form-control" />
+                <span asp-validation-for="ResultadosExa_Glucosa" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valoracion_MedInterna" class="control-label"></label>
+                <input asp-for="Valoracion_MedInterna" class="form-control" />
+                <span asp-validation-for="Valoracion_MedInterna" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Valoracion_Anestesia" class="control-label"></label>
+                <input asp-for="Valoracion_Anestesia" class="form-control" />
+                <span asp-validation-for="Valoracion_Anestesia" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha_diagnostico" class="control-label"></label>
+                <input asp-for="Fecha_diagnostico" class="form-control" />
+                <span asp-validation-for="Fecha_diagnostico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notas_diagnostico" class="control-label"></label>
+                <input asp-for="Notas_diagnostico" class="form-control" />
+                <span asp-validation-for="Notas_diagnostico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

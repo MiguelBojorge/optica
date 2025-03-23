@@ -1,0 +1,103 @@
+﻿@model Control_PacientesDB.Models.PacienteViewModel
+
+@{
+    ViewData["Title"] = "Detalles del Paciente";
+}
+
+<h1 class="mb-4">Detalles del Paciente</h1>
+
+<div class="card shadow-sm mb-5">
+    <div class="card-body">
+        <!-- Sección de Información del Paciente -->
+        <h4 class="card-title text-primary mb-3">Información del Paciente</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Codigo_paciente)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Codigo_paciente)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Nombres)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Nombres)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Apellidos)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Apellidos)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Cedula)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Cedula)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.FechaNac)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.FechaNac)
+            </dd>
+        </dl>
+
+        <!-- Sección de Dirección -->
+        <h4 class="card-title text-primary mt-4 mb-3">Dirección del Paciente</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Direccion_Domicilio)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Direccion_Domicilio)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Ciudad)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Ciudad)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Departamentos)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Departamentos)
+            </dd>
+        </dl>
+
+        <!-- Sección de Teléfono -->
+        <h4 class="card-title text-primary mt-4 mb-3">Teléfono del Paciente</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Num_Telefono)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Num_Telefono)
+            </dd>
+            <dt class="col-sm-3 font-weight-bold">
+                @Html.DisplayNameFor(model => model.Company)
+            </dt>
+            <dd class="col-sm-9">
+                @Html.DisplayFor(model => model.Company)
+            </dd>
+        </dl>
+    </div>
+</div>
+
+<!-- Botones de navegación -->
+<div class="d-flex justify-content-between">
+    <a asp-action="Edit" class="btn btn-outline-primary" asp-route-id="@Model?.Codigo_paciente">
+        <i class="fas fa-edit"></i> Editar
+    </a>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+}

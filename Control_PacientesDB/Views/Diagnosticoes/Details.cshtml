@@ -1,0 +1,37 @@
+﻿@model Control_PacientesDB.Models.Diagnostico
+
+@{
+    ViewData["Title"] = "Detalles de Diagnóstico";
+}
+
+<div class="details-container">
+    <h1 class="details-title">Detalles de Diagnóstico</h1>
+    <dl class="row">
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Medico)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Medico.Apellidos)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Paciente)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Paciente.Apellidos)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Valoracion_oftalmologica)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Valoracion_oftalmologica)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.ResultadosExa_Glucosa)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.ResultadosExa_Glucosa)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Valoracion_MedInterna)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Valoracion_MedInterna)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Valoracion_Anestesia)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Valoracion_Anestesia)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Fecha_diagnostico)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Fecha_diagnostico)</dd>
+        <dt class="col-sm-4 details-label">@Html.DisplayNameFor(model => model.Notas_diagnostico)</dt>
+        <dd class="col-sm-8 details-value">@Html.DisplayFor(model => model.Notas_diagnostico)</dd>
+    </dl>
+</div>
+
+<!-- Botones de navegación -->
+<div class="d-flex justify-content-between">
+    <a asp-action="Edit" class="btn btn-outline-primary" asp-route-id="@Model?.Codigo_diagnostico">
+        <i class="fas fa-edit"></i> Editar
+    </a>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>

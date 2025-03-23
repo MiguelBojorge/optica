@@ -1,0 +1,61 @@
+﻿@model Control_PacientesDB.Models.Seguimientos_PostOperatorios
+
+@{
+    ViewData["Title"] = "Editar";
+}
+
+<h1>Editar seguimiento</h1>
+
+<h4>Seguimientos Post-Operación</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Codigo_seguimiento" />
+            <div class="form-group">
+                <label asp-for="Codigo_medico" class="control-label"></label>
+                <select asp-for="Codigo_medico" class="form-control" asp-items="ViewBag.Codigo_medico"></select>
+                <span asp-validation-for="Codigo_medico" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Codigo_paciente" class="control-label"></label>
+                <select asp-for="Codigo_paciente" class="form-control" asp-items="ViewBag.Codigo_paciente"></select>
+                <span asp-validation-for="Codigo_paciente" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Codigo_Medicamento" class="control-label"></label>
+                <select asp-for="Codigo_Medicamento" class="form-control" asp-items="ViewBag.Codigo_Medicamento"></select>
+                <span asp-validation-for="Codigo_Medicamento" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Fecha_Control" class="control-label"></label>
+                <input asp-for="Fecha_Control" class="form-control" />
+                <span asp-validation-for="Fecha_Control" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Programacion_ProximaCita" class="control-label"></label>
+                <input asp-for="Programacion_ProximaCita" class="form-control" />
+                <span asp-validation-for="Programacion_ProximaCita" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Observaciones" class="control-label"></label>
+                <input asp-for="Observaciones" class="form-control" />
+                <span asp-validation-for="Observaciones" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn">Guardar Cambios</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
