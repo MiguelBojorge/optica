@@ -4,7 +4,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace Control_PacientesDB.Models
 {
-    public class Medicos
+    public class Medico
     {
         [Key]
         public int Codigo_medico { get; set; }

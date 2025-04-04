@@ -1,0 +1,77 @@
+﻿@model Control_PacientesDB.Models.DiagnosticoViewModel
+
+@{
+    ViewData["Title"] = "Detalles del Diagnóstico";
+}
+
+<h1 class="mb-4">Detalles del Diagnóstico</h1>
+
+<div class="card shadow-sm mb-5">
+    <div class="card-body">
+        <!-- Sección de Información General -->
+        <h4 class="card-title text-primary mb-3">Información General</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.Codigo_diagnostico)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Codigo_diagnostico)</dd>
+
+            <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.Fecha_diagnostico)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Fecha_diagnostico)</dd>
+        </dl>
+
+        <!-- Sección del Médico -->
+        <h4 class="card-title text-primary mt-4 mb-3">Información del Médico</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.MedicoNombre)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.MedicoNombre)</dd>
+        </dl>
+
+        <!-- Sección del Paciente -->
+        <h4 class="card-title text-primary mt-4 mb-3">Información del Paciente</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.PacienteNombre)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.PacienteNombre)</dd>
+        </dl>
+
+        <!-- Sección de Evaluaciones -->
+        <h4 class="card-title text-primary mt-4 mb-3">Evaluaciones y Resultados</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.Valoracion_oftalmologica)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Valoracion_oftalmologica)</dd>
+
+            <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.ResultadosExa_Glucosa)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.ResultadosExa_Glucosa)</dd>
+
+            <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.Valoracion_MedInterna)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Valoracion_MedInterna)</dd>
+
+            <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.Valoracion_Anestesia)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Valoracion_Anestesia)</dd>
+        </dl>
+
+        <!-- Sección de Notas -->
+        <h4 class="card-title text-primary mt-4 mb-3">Notas del Diagnóstico</h4>
+        <hr />
+        <dl class="row">
+            <dt class="col-sm-3 font-weight-bold">@Html.DisplayNameFor(model => model.Notas_diagnostico)</dt>
+            <dd class="col-sm-9">@Html.DisplayFor(model => model.Notas_diagnostico)</dd>
+        </dl>
+    </div>
+</div>
+
+<!-- Botones de navegación -->
+<div class="d-flex justify-content-between">
+    <a asp-action="Edit" class="btn btn-outline-primary" asp-route-id="@Model?.Codigo_diagnostico">
+        <i class="fas fa-edit"></i> Editar
+    </a>
+    <a asp-action="Index" class="btn btn-outline-secondary">
+        <i class="fas fa-list"></i> Volver a la Lista
+    </a>
+</div>
+
+@section Scripts {
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+}

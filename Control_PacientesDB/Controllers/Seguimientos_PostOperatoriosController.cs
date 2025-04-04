@@ -62,8 +62,7 @@ namespace Control_PacientesDB.Controllers
         }
 
         // POST: Seguimientos_PostOperatorios/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Codigo_seguimiento,Codigo_medico,Codigo_paciente,Codigo_Medicamento,Fecha_Control,Programacion_ProximaCita,Observaciones")] Seguimientos_PostOperatorios seguimientos_PostOperatorios)
@@ -100,8 +99,7 @@ namespace Control_PacientesDB.Controllers
         }
 
         // POST: Seguimientos_PostOperatorios/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Codigo_seguimiento,Codigo_medico,Codigo_paciente,Codigo_Medicamento,Fecha_Control,Programacion_ProximaCita,Observaciones")] Seguimientos_PostOperatorios seguimientos_PostOperatorios)

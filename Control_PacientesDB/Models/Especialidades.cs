@@ -18,6 +18,6 @@ namespace Control_PacientesDB.Models
 
         // Relación con la entidad Medico (sin generar columna extra)
         [ForeignKey("Codigo_medico")]
-        public Medicos Medico { get; set; }
+        public Medico Medico { get; set; }
     }
 }

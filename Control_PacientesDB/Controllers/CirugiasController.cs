@@ -57,8 +57,7 @@ namespace Control_PacientesDB.Controllers
         }
 
         // POST: Cirugias/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Codigo_cirugia,Codigo_diagnostico,Codigo_medico,Fecha_cirugia,Hora_inicio,Hora_fin")] Cirugias cirugias)
@@ -101,8 +100,7 @@ namespace Control_PacientesDB.Controllers
         }
 
         // POST: Cirugias/Edit/5
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Codigo_cirugia,Codigo_diagnostico,Codigo_medico,Fecha_cirugia,Hora_inicio,Hora_fin")] Cirugias cirugias)

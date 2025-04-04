@@ -15,7 +15,7 @@ namespace Control_PacientesDB.Models
 
         // Relación con la entidad Medico (sin generar columna extra)
         [ForeignKey("Codigo_medico")]
-        public Medicos Medico { get; set; }
+        public Medico Medico { get; set; }
 
         // Clave foránea explícita (FK) para Paciente
         [Required(ErrorMessage = "Seleccionar un paciente por favor")]
@@ -43,5 +43,7 @@ namespace Control_PacientesDB.Models
 
         [Required(ErrorMessage = "Llenar este campo es obligatorio")]
         public string Notas_diagnostico { get; set; }
+
+        public ICollection<Cirugias> Cirugias { get; set; } = new List<Cirugias>();
     }
 }
