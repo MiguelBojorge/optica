@@ -136,35 +136,76 @@ namespace Control_PacientesDB.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, DiagnosticoViewModel model)
         {
-            if (id != model.Codigo_diagnostico) return NotFound();
+            Console.WriteLine($"Datos recibidos - ID: {id}, Codigo_medico: {model.Codigo_medico}, Valoracion: {model.Valoracion_oftalmologica}");
+
+            if (id != model.Codigo_diagnostico)
+            {
+                Console.WriteLine("Error: ID no coincide");
+                return NotFound();
+            }
 
             if (ModelState.IsValid)
             {
-                try
+                var errors = ModelState.Values.SelectMany(v => v.Errors);
+                foreach (var error in errors)
                 {
-                    var diagnostico = await _context.Diagnostico.FindAsync(id);
-                    if (diagnostico == null) return NotFound();
-
-                    diagnostico.Codigo_medico = model.Codigo_medico;
-                    diagnostico.Codigo_paciente = model.Codigo_paciente;
-                    diagnostico.Valoracion_oftalmologica = model.Valoracion_oftalmologica;
-                    diagnostico.ResultadosExa_Glucosa = model.ResultadosExa_Glucosa;
-                    diagnostico.Valoracion_MedInterna = model.Valoracion_MedInterna;
-                    diagnostico.Valoracion_Anestesia = model.Valoracion_Anestesia;
-                    diagnostico.Fecha_diagnostico = model.Fecha_diagnostico;
-                    diagnostico.Notas_diagnostico = model.Notas_diagnostico;
-
-                    _context.Update(diagnostico);
-                    await _context.SaveChangesAsync();
+                    Console.WriteLine($"Error de validación: {error.ErrorMessage}");
                 }
-                catch (DbUpdateConcurrencyException)
+                CargarListas();
+                return View(model);
+            }
+            try
+            {
+                // 1. Obtener la entidad existente SIN TRACKING
+                var diagnosticoExistente = await _context.Diagnostico
+                    .AsNoTracking()
+                    .FirstOrDefaultAsync(d => d.Codigo_diagnostico == id);
+
+                if (diagnosticoExistente == null)
                 {
-                    if (!DiagnosticoExists(model.Codigo_diagnostico)) return NotFound();
-                    throw;
+                    Console.WriteLine("Diagnóstico no encontrado");
+                    return NotFound();
                 }
+
+                // 2. Crear nueva instancia con los datos actualizados
+                var diagnosticoActualizado = new Diagnostico
+                {
+                    Codigo_diagnostico = id,
+                    Codigo_medico = model.Codigo_medico,
+                    Codigo_paciente = model.Codigo_paciente,
+                    Valoracion_oftalmologica = model.Valoracion_oftalmologica,
+                    ResultadosExa_Glucosa = model.ResultadosExa_Glucosa,
+                    Valoracion_MedInterna = model.Valoracion_MedInterna,
+                    Valoracion_Anestesia = model.Valoracion_Anestesia,
+                    Fecha_diagnostico = model.Fecha_diagnostico,
+                    Notas_diagnostico = model.Notas_diagnostico
+                };
+                var cambios = _context.ChangeTracker.Entries()
+                    .Where(e => e.State == EntityState.Modified)
+                    .ToList();
+
+                Console.WriteLine($"Entidades a actualizar: {cambios.Count}");
+                // 3. Adjuntar y marcar como modificado
+                _context.Attach(diagnosticoActualizado);
+                _context.Entry(diagnosticoActualizado).State = EntityState.Modified;
+
+                await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
+            catch (DbUpdateConcurrencyException ex)
+            {
+                // 4. Manejar errores de concurrencia
+                if (!DiagnosticoExists(id))
+                    return NotFound();
 
+                ModelState.AddModelError("", "El registro fue modificado por otro usuario. Por favor refresque los datos.");
+                Console.WriteLine($"Error de concurrencia: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error inesperado: {ex.ToString()}");
+                ModelState.AddModelError("", "Ocurrió un error al guardar. Intente nuevamente.");
+            }
             CargarListas();
             return View(model);
         }

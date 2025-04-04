@@ -48,11 +48,7 @@ namespace Control_PacientesDB.Controllers
         // GET: Cirugias/Create
         public IActionResult Create()
         {
-            ViewData["Codigo_diagnostico"] = new SelectList(_context.Diagnostico, "Codigo_diagnostico", "Codigo_diagnostico");
-            ViewData["Codigo_medico"] = new SelectList(_context.Medico.Select(m => new {
-                m.Codigo_medico,
-                NombreCompleto = m.Nombres + " " + m.Apellidos
-            }), "Codigo_medico", "NombreCompleto");
+            CargarListas();
             return View();
         }
 
@@ -60,21 +56,34 @@ namespace Control_PacientesDB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Codigo_cirugia,Codigo_diagnostico,Codigo_medico,Fecha_cirugia,Hora_inicio,Hora_fin")] Cirugias cirugias)
+        public async Task<IActionResult> Create(CirugiasViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(cirugias);
+                CargarListas();
+                return View(model);
+            }
+            try
+            {
+                var cirugia = new Cirugias
+                {
+                    Codigo_diagnostico = model.Codigo_diagnostico,
+                    Codigo_medico = model.Codigo_medico,
+                    Fecha_cirugia = model.Fecha_cirugia,
+                    Hora_inicio = model.Hora_inicio,
+                    Hora_fin = model.Hora_fin
+                };
+
+                _context.Add(cirugia);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Codigo_diagnostico"] = new SelectList(_context.Diagnostico, "Codigo_diagnostico", "Codigo_diagnostico", cirugias.Codigo_diagnostico);
-            ViewData["Codigo_medico"] = new SelectList(_context.Medico.Select(m => new
+            catch (DbUpdateException ex)
             {
-                m.Codigo_medico,
-                NombreCompleto = m.Nombres + " " + m.Apellidos
-            }), "Codigo_medico", "NombreCompleto");
-            return View(cirugias);
+                ModelState.AddModelError("", $"Error al guardar: {ex.InnerException?.Message}");
+                CargarListas();
+                return View(model);
+            }
         }
 
         // GET: Cirugias/Edit/5
@@ -90,22 +99,26 @@ namespace Control_PacientesDB.Controllers
             {
                 return NotFound();
             }
-            ViewData["Codigo_diagnostico"] = new SelectList(_context.Diagnostico, "Codigo_diagnostico", "Codigo_diagnostico", cirugias.Codigo_diagnostico);
-            ViewData["Codigo_medico"] = new SelectList(_context.Medico.Select(m => new
+            var viewModel = new CirugiasViewModel
             {
-                m.Codigo_medico,
-                NombreCompleto = m.Nombres + " " + m.Apellidos
-            }), "Codigo_medico", "NombreCompleto");
-            return View(cirugias);
+                Codigo_cirugia = cirugias.Codigo_cirugia,
+                Codigo_diagnostico = cirugias.Codigo_diagnostico,
+                Codigo_medico = cirugias.Codigo_medico,
+                Fecha_cirugia = cirugias.Fecha_cirugia,
+                Hora_inicio = cirugias.Hora_inicio,
+                Hora_fin = cirugias.Hora_fin
+            };
+            CargarListas();
+            return View(viewModel);
         }
 
         // POST: Cirugias/Edit/5
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Codigo_cirugia,Codigo_diagnostico,Codigo_medico,Fecha_cirugia,Hora_inicio,Hora_fin")] Cirugias cirugias)
+        public async Task<IActionResult> Edit(int id, CirugiasViewModel model)
         {
-            if (id != cirugias.Codigo_cirugia)
+            if (id != model.Codigo_cirugia)
             {
                 return NotFound();
             }
@@ -114,25 +127,37 @@ namespace Control_PacientesDB.Controllers
             {
                 try
                 {
-                    _context.Update(cirugias);
+                    var cirugiaExistente = await _context.Cirugias
+                       .AsNoTracking()
+                       .FirstOrDefaultAsync(c => c.Codigo_cirugia == id);
+
+                    if (cirugiaExistente == null) return NotFound();
+
+                    var cirugiaActualizada = new Cirugias
+                    {
+                        Codigo_cirugia = id,
+                        Codigo_diagnostico = model.Codigo_diagnostico,
+                        Codigo_medico = model.Codigo_medico,
+                        Fecha_cirugia = model.Fecha_cirugia,
+                        Hora_inicio = model.Hora_inicio,
+                        Hora_fin = model.Hora_fin
+                    };
+
+                    _context.Attach(cirugiaActualizada);
+                    _context.Entry(cirugiaActualizada).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!CirugiasExists(cirugias.Codigo_cirugia))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    if (!CirugiaExists(id)) return NotFound();
+                    throw;
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["Codigo_diagnostico"] = new SelectList(_context.Diagnostico, "Codigo_diagnostico", "Codigo_diagnostico", cirugias.Codigo_diagnostico);
-            ViewData["Codigo_medico"] = new SelectList(_context.Medico.Select(m => new { m.Codigo_medico, NombreCompleto = m.Nombres + " " + m.Apellidos }), "Codigo_medico", "NombreCompleto");
-            return View(cirugias);
+
+            CargarListas();
+            return View(model);
         }
 
         // GET: Cirugias/Delete/5
@@ -170,9 +195,15 @@ namespace Control_PacientesDB.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        private bool CirugiasExists(int id)
+        private bool CirugiaExists(int id)
         {
             return _context.Cirugias.Any(e => e.Codigo_cirugia == id);
+        }
+
+        private void CargarListas()
+        {
+            ViewBag.Codigo_diagnostico = new SelectList(_context.Diagnostico, "Codigo_diagnostico", "Codigo_diagnostico");
+            ViewBag.Codigo_medico = new SelectList(_context.Medico, "Codigo_medico", "NombreCompleto");
         }
     }
 }

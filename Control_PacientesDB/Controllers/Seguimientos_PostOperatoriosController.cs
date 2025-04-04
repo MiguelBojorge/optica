@@ -49,15 +49,7 @@ namespace Control_PacientesDB.Controllers
         // GET: Seguimientos_PostOperatorios/Create
         public IActionResult Create()
         {
-            ViewData["Codigo_Medicamento"] = new SelectList(_context.Medicamentos, "Codigo_Medicamento", "Nombre_Medicamento");
-            ViewData["Codigo_medico"] = new SelectList(_context.Medico.Select(m => new {
-                m.Codigo_medico,
-                NombreCompleto = m.Nombres + " " + m.Apellidos
-            }), "Codigo_medico", "NombreCompleto");
-            ViewData["Codigo_paciente"] = new SelectList(_context.Paciente.Select(p => new {
-                p.Codigo_paciente,
-                NombreCompleto = p.Nombres + " " + p.Apellidos
-            }), "Codigo_paciente", "NombreCompleto");
+            CargarListas();
             return View();
         }
 
@@ -65,18 +57,35 @@ namespace Control_PacientesDB.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Codigo_seguimiento,Codigo_medico,Codigo_paciente,Codigo_Medicamento,Fecha_Control,Programacion_ProximaCita,Observaciones")] Seguimientos_PostOperatorios seguimientos_PostOperatorios)
+        public async Task<IActionResult> Create(Seguimientos_PostOperatoriosViewModel model)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(seguimientos_PostOperatorios);
+                CargarListas();
+                return View(model);
+            }
+            try
+            {
+                var seguimiento = new Seguimientos_PostOperatorios
+                {
+                    Codigo_medico = model.Codigo_medico,
+                    Codigo_paciente = model.Codigo_paciente,
+                    Codigo_Medicamento = model.Codigo_Medicamento,
+                    Fecha_Control = model.Fecha_Control,
+                    Programacion_ProximaCita = model.Programacion_ProximaCita,
+                    Observaciones = model.Observaciones
+                };
+
+                _context.Add(seguimiento);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["Codigo_Medicamento"] = new SelectList(_context.Medicamentos, "Codigo_Medicamento", "Nombre_Medicamento", seguimientos_PostOperatorios.Codigo_Medicamento);
-            ViewData["Codigo_medico"] = new SelectList(_context.Medico, "Codigo_medico", "Apellidos", seguimientos_PostOperatorios.Codigo_medico);
-            ViewData["Codigo_paciente"] = new SelectList(_context.Paciente, "Codigo_paciente", "Apellidos", seguimientos_PostOperatorios.Codigo_paciente);
-            return View(seguimientos_PostOperatorios);
+            catch (DbUpdateException ex)
+            {
+                ModelState.AddModelError("", $"Error al guardar: {ex.InnerException?.Message}");
+                CargarListas();
+                return View(model);
+            }
         }
 
         // GET: Seguimientos_PostOperatorios/Edit/5
@@ -92,19 +101,28 @@ namespace Control_PacientesDB.Controllers
             {
                 return NotFound();
             }
-            ViewData["Codigo_Medicamento"] = new SelectList(_context.Medicamentos, "Codigo_Medicamento", "Nombre_Medicamento", seguimientos_PostOperatorios.Codigo_Medicamento);
-            ViewData["Codigo_medico"] = new SelectList(_context.Medico, "Codigo_medico", "Apellidos", seguimientos_PostOperatorios.Codigo_medico);
-            ViewData["Codigo_paciente"] = new SelectList(_context.Paciente, "Codigo_paciente", "Apellidos", seguimientos_PostOperatorios.Codigo_paciente);
-            return View(seguimientos_PostOperatorios);
+            var viewModel = new Seguimientos_PostOperatoriosViewModel
+            {
+                Codigo_seguimiento = seguimientos_PostOperatorios.Codigo_seguimiento,
+                Codigo_medico = seguimientos_PostOperatorios.Codigo_medico,
+                Codigo_paciente = seguimientos_PostOperatorios.Codigo_paciente,
+                Codigo_Medicamento = seguimientos_PostOperatorios.Codigo_Medicamento,
+                Fecha_Control = seguimientos_PostOperatorios.Fecha_Control,
+                Programacion_ProximaCita = seguimientos_PostOperatorios.Programacion_ProximaCita,
+                Observaciones = seguimientos_PostOperatorios.Observaciones
+            };
+
+            CargarListas();
+            return View(viewModel);
         }
 
         // POST: Seguimientos_PostOperatorios/Edit/5
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Codigo_seguimiento,Codigo_medico,Codigo_paciente,Codigo_Medicamento,Fecha_Control,Programacion_ProximaCita,Observaciones")] Seguimientos_PostOperatorios seguimientos_PostOperatorios)
+        public async Task<IActionResult> Edit(int id, Seguimientos_PostOperatoriosViewModel model)
         {
-            if (id != seguimientos_PostOperatorios.Codigo_seguimiento)
+            if (id != model.Codigo_seguimiento)
             {
                 return NotFound();
             }
@@ -113,12 +131,32 @@ namespace Control_PacientesDB.Controllers
             {
                 try
                 {
-                    _context.Update(seguimientos_PostOperatorios);
+                    var seguimientoExistente = await _context.Seguimientos_PostOperatorios
+                         .AsNoTracking()
+                         .FirstOrDefaultAsync(s => s.Codigo_seguimiento == id);
+
+                    if (seguimientoExistente == null) return NotFound();
+
+                    var seguimientoActualizado = new Seguimientos_PostOperatorios
+                    {
+                        Codigo_seguimiento = id,
+                        Codigo_medico = model.Codigo_medico,
+                        Codigo_paciente = model.Codigo_paciente,
+                        Codigo_Medicamento = model.Codigo_Medicamento,
+                        Fecha_Control = model.Fecha_Control,
+                        Programacion_ProximaCita = model.Programacion_ProximaCita,
+                        Observaciones = model.Observaciones
+                    };
+
+                    _context.Attach(seguimientoActualizado);
+                    _context.Entry(seguimientoActualizado).State = EntityState.Modified;
                     await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index));
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!Seguimientos_PostOperatoriosExists(seguimientos_PostOperatorios.Codigo_seguimiento))
+                    if (!Seguimientos_PostOperatoriosExists(model.Codigo_seguimiento))
                     {
                         return NotFound();
                     }
@@ -127,12 +165,9 @@ namespace Control_PacientesDB.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
             }
-            ViewData["Codigo_Medicamento"] = new SelectList(_context.Medicamentos, "Codigo_Medicamento", "Nombre_Medicamento", seguimientos_PostOperatorios.Codigo_Medicamento);
-            ViewData["Codigo_medico"] = new SelectList(_context.Medico, "Codigo_medico", "Apellidos", seguimientos_PostOperatorios.Codigo_medico);
-            ViewData["Codigo_paciente"] = new SelectList(_context.Paciente, "Codigo_paciente", "Apellidos", seguimientos_PostOperatorios.Codigo_paciente);
-            return View(seguimientos_PostOperatorios);
+            CargarListas();
+            return View(model);
         }
 
         // GET: Seguimientos_PostOperatorios/Delete/5
@@ -174,6 +209,13 @@ namespace Control_PacientesDB.Controllers
         private bool Seguimientos_PostOperatoriosExists(int id)
         {
             return _context.Seguimientos_PostOperatorios.Any(e => e.Codigo_seguimiento == id);
+        }
+
+        private void CargarListas()
+        {
+            ViewBag.Codigo_medico = new SelectList(_context.Medico, "Codigo_medico", "NombreCompleto");
+            ViewBag.Codigo_paciente = new SelectList(_context.Paciente, "Codigo_paciente", "NombreCompleto");
+            ViewBag.Codigo_Medicamento = new SelectList(_context.Medicamentos, "Codigo_Medicamento", "Nombre_Medicamento");
         }
     }
 }
