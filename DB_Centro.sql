@@ -97,12 +97,12 @@ ON Direccion.Id_Direccion = Paciente.Id_Direccion
 INSERT INTO Direccion (Id_Direccion, Direccion_Domicilio, Ciudad, Departamentos)
 VALUES
     (101, 'Barrio Santa Ana, Calle Principal', 'Managua', 'Managua'),
-    (2, 'Avenida Central', 'Le�n', 'Le�n'),
+    (2, 'Avenida Central', 'León', 'León'),
     (3, 'Colonia 10 de Junio', 'Masaya', 'Masaya'),
     (4, 'Barrio Guadalupe', 'Chinandega', 'Chinandega'),
-    (5, 'Urbanizaci�n San Jos�', 'Estel�', 'Estel�'),
+    (5, 'Urbanización San José', 'Estelí', 'Estelí'),
     (6, 'Barrio El Carmen', 'Matagalpa', 'Matagalpa'),
-    (7, 'Colonia El Para�so', 'Granada', 'Granada'),
+    (7, 'Colonia El Paraíso', 'Granada', 'Granada'),
     (8, 'Reparto Santa Rosa', 'Jinotega', 'Jinotega'),
     (9, 'Barrio San Luis', 'Rivas', 'Rivas'),
     (10, 'Colonia La Florida', 'Carazo', 'Carazo');
@@ -111,34 +111,34 @@ VALUES
 -- Inserci�n de datos en la tabla Paciente
 INSERT INTO Paciente (Codigo_paciente, Nombres, Apellidos, Cedula, FechaNac, Id_Direccion)
 VALUES
-    (1001, 'Mar�a', 'Lopez', '001-080455-0001U', '1955-04-08', 101),
+    (1001, 'María', 'Lopez', '001-080455-0001U', '1955-04-08', 101),
     (1002, 'Carlos', 'Ramos', '002-150360-0002U', '1960-03-15', 2),
-    (1003, 'Juana', 'Gonz�lez', '003-231248-0003U', '1948-12-23', 3),
-    (1004, 'Francisco', 'Mart�nez', '004-290552-0004U', '1952-05-29', 4),
-    (1005, 'Sof�a', 'Mej�a', '005-181165-0005U', '1965-11-18', 5),
-    (1006, 'Jos�', 'P�rez', '006-030470-0006U', '1970-04-03', 6),
+    (1003, 'Juana', 'González', '003-231248-0003U', '1948-12-23', 3),
+    (1004, 'Francisco', 'Martínez', '004-290552-0004U', '1952-05-29', 4),
+    (1005, 'Sofía', 'Mejía', '005-181165-0005U', '1965-11-18', 5),
+    (1006, 'José', 'Pérez', '006-030470-0006U', '1970-04-03', 6),
     (1007, 'Carmen', 'Vargas', '007-240968-0007U', '1968-09-24', 7),
     (1008, 'Ana', 'Castro', '008-050259-0008U', '1959-02-05', 8),
     (1009, 'Luis', 'Reyes', '009-130845-0009U', '1945-08-13', 9),
-    (1010, 'Ver�nica', 'Rivera', '010-300650-0010U', '1950-06-30', 10);
+    (1010, 'Verónica', 'Rivera', '010-300650-0010U', '1950-06-30', 10);
 
 
 
--- Inserci�n de datos en la tabla Medico
+-- Inserción de datos en la tabla Medico
 INSERT INTO Medico (Codigo_medico, Nombres, Apellidos, Codigo_Especialidad)
 VALUES
-    (123, 'Juan', 'P�rez', 1),
-    (234, 'Ana', 'Garc�a', 1),
-    (345, 'Luis', 'Mart�nez', 3),
-    (403, 'Marta', 'Rodr�guez', 2),
-    (509, 'Carlos', 'Hern�ndez', 5),
-    (634, 'Luc�a', 'L�pez', 2),
-    (721, 'Pedro', 'Gonz�lez', 4),
-    (890, 'Sara', 'Ram�rez', 4),
-    (900, 'Manuel', 'S�nchez', 5),
-    (101, 'Elena', 'Fern�ndez', 2);
+    (123, 'Juan', 'Pérez', 1),
+    (234, 'Ana', 'García', 1),
+    (345, 'Luis', 'Martínez', 3),
+    (403, 'Marta', 'Rodríguez', 2),
+    (509, 'Carlos', 'Hernández', 5),
+    (634, 'Lucía', 'López', 2),
+    (721, 'Pedro', 'González', 4),
+    (890, 'Sara', 'Ramírez', 4),
+    (900, 'Manuel', 'Sánchez', 5),
+    (101, 'Elena', 'Fernández', 2);
 
--- Inserci�n de datos en la tabla Especialidades
+-- Inserción de datos en la tabla Especialidades
 INSERT INTO Especialidades (Codigo_Especialidad, Nombre)
 VALUES
     (1, 'Medicina de laboratorio'),
@@ -158,24 +158,24 @@ SELECT * FROM Medico
 
 
 --ingresando datos de diagnostico
--- Inserci�n de datos en la tabla Diagnostico
+-- Inserción de datos en la tabla Diagnostico
 INSERT INTO Diagnostico (Codigo_medico, Codigo_paciente, Valoracion_oftalmologica, ResultadosExa_Glucosa, Valoracion_MedInterna, Valoracion_Anestesia, Fecha_diagnostico, Notas_diagnostico)
 VALUES
-    (123, 1001, 'Catarata avanzada en OD', 'Glucosa en ayunas: 115 mg/dL', 'Estable, sin complicaciones mayores', 'Apta para cirug�a con anestesia t�pica', '2023-07-15', 'Preparar cirug�a en centro oftalmol�gico de Managua'),
-    (234, 1002, 'Miop�a y astigmatismo', 'Glucosa en ayunas: 90 mg/dL', 'Sin riesgos adicionales', 'Sin anestesia requerida', '2023-08-01', 'Recomendaci�n de gafas progresivas para visi�n cercana'),
-    (345, 1003, 'Glaucoma de �ngulo abierto', 'Glucosa en ayunas: 105 mg/dL', 'Presi�n arterial controlada', 'Apta para procedimientos de seguimiento', '2023-08-20', 'Monitoreo y seguimiento cada tres meses en Masaya'),
-    (403, 1004, 'Retinopat�a diab�tica leve', 'Glucosa en ayunas: 180 mg/dL', 'Control de diabetes', 'Apta para sedaci�n moderada', '2023-09-10', 'Evaluaci�n para tratamiento de retinopat�a en cl�nica especializada en Chinandega'),
+    (123, 1001, 'Catarata avanzada en OD', 'Glucosa en ayunas: 115 mg/dL', 'Estable, sin complicaciones mayores', 'Apta para cirugía con anestesia tópica', '2023-07-15', 'Preparar cirugía en centro oftalmológico de Managua'),
+    (234, 1002, 'Miopía y astigmatismo', 'Glucosa en ayunas: 90 mg/dL', 'Sin riesgos adicionales', 'Sin anestesia requerida', '2023-08-01', 'Recomendación de gafas progresivas para visión cercana'),
+    (345, 1003, 'Glaucoma de ángulo abierto', 'Glucosa en ayunas: 105 mg/dL', 'Presión arterial controlada', 'Apta para procedimientos de seguimiento', '2023-08-20', 'Monitoreo y seguimiento cada tres meses en Masaya'),
+    (403, 1004, 'Retinopatía diabética leve', 'Glucosa en ayunas: 180 mg/dL', 'Control de diabetes', 'Apta para sedación moderada', '2023-09-10', 'Evaluación para tratamiento de retinopatía en clínica especializada en Chinandega'),
     (509, 1005, 'Astigmatismo leve', 'Glucosa en ayunas: 98 mg/dL', 'Sin condiciones de riesgo', 'Sin anestesia necesaria', '2023-09-30', 'Requiere lentes correctivos para lectura'),
-    (634, 1006, 'Presbicia y catarata incipiente', 'Glucosa en ayunas: 110 mg/dL', 'En buena condici�n general', 'Apta para anestesia local', '2023-10-15', 'Cirug�a de catarata programada en hospital de Matagalpa'),
-    (721, 1007, 'Hipermetrop�a con opacidad leve', 'Glucosa en ayunas: 99 mg/dL', 'Controlado', 'Apta para procedimiento con sedaci�n leve', '2023-10-20', 'Evaluaci�n anual recomendada en Granada'),
-    (890, 1008, 'Degeneraci�n macular', 'Glucosa en ayunas: 120 mg/dL', 'Presi�n controlada', 'Sin anestesia requerida', '2023-11-05', 'Inyecciones intrav�treas en hospital regional en Jinotega'),
-    (900, 1009, 'Conjuntivitis al�rgica cr�nica', 'Glucosa en ayunas: 85 mg/dL', 'Sin complicaciones', 'No se requiere anestesia', '2023-11-10', 'Tratamiento con antihistam�nicos t�picos en Rivas'),
-    (101, 1010, 'Catarata moderada en OI', 'Glucosa en ayunas: 95 mg/dL', 'Apto para cirug�a', 'Anestesia t�pica recomendada', '2023-11-15', 'Preparaci�n para cirug�a en cl�nica oftalmol�gica en Carazo');
+    (634, 1006, 'Presbicia y catarata incipiente', 'Glucosa en ayunas: 110 mg/dL', 'En buena condición general', 'Apta para anestesia local', '2023-10-15', 'Cirugía de catarata programada en hospital de Matagalpa'),
+    (721, 1007, 'Hipermetropía con opacidad leve', 'Glucosa en ayunas: 99 mg/dL', 'Controlado', 'Apta para procedimiento con sedación leve', '2023-10-20', 'Evaluación anual recomendada en Granada'),
+    (890, 1008, 'Degeneración macular', 'Glucosa en ayunas: 120 mg/dL', 'Presión controlada', 'Sin anestesia requerida', '2023-11-05', 'Inyecciones intravítreas en hospital regional en Jinotega'),
+    (900, 1009, 'Conjuntivitis alérgica crónica', 'Glucosa en ayunas: 85 mg/dL', 'Sin complicaciones', 'No se requiere anestesia', '2023-11-10', 'Tratamiento con antihistamínicos tópicos en Rivas'),
+    (101, 1010, 'Catarata moderada en OI', 'Glucosa en ayunas: 95 mg/dL', 'Apto para cirugía', 'Anestesia tópica recomendada', '2023-11-15', 'Preparación para cirugía en clínica oftalmológica en Carazo');
 
 
 
 
--- Tel�fonos
+-- Teléfonos
 INSERT INTO Telefono (ID_Telefono, Num_Telefono, Company, Codigo_paciente)
 VALUES
     (1, '88881234', 'Claro', 1001),
@@ -198,7 +198,7 @@ FROM Paciente
 SELECT * 
 FROM Diagnostico
 
--- Inserci�n de datos en la tabla Cirugias
+-- Inserción de datos en la tabla Cirugias
 INSERT INTO Cirugias (Codigo_medico, Fecha_cirugia, Hora_inicio, Hora_fin)
 VALUES
     (123, '2023-07-25', '08:30:00', '09:30:00'),
@@ -212,30 +212,30 @@ VALUES
     (890, '2023-12-15', '15:00:00', '16:00:00'),
     (900, '2023-12-20', '10:00:00', '11:00:00');
 
--- Inserci�n de datos en la tabla Seguimientos_PostOperaciones
+-- Inserción de datos en la tabla Seguimientos_PostOperaciones
 	INSERT INTO Seguimientos_PostOperatorios (Fecha_Control, Programacion_ProximaCita, Observaciones)
 VALUES
-    ('2023-07-28', '2023-08-28', 'Revisi�n postoperatoria. Sin complicaciones.'),
-    ('2023-09-01', '2023-10-01', 'Revisi�n de adaptaci�n a lentes progresivos.'),
-    ('2023-09-15', '2023-10-15', 'Contin�a tratamiento para control de presi�n intraocular.'),
-    ('2023-09-20', '2023-10-20', 'Recomendaci�n de control de glucosa y retinopat�a.'),
-    ('2023-10-01', '2023-11-01', 'Adaptaci�n adecuada a lentes. No hay molestias.'),
-    ('2023-11-01', '2023-12-01', 'Planificaci�n de pr�xima cirug�a de catarata.'),
-    ('2023-12-05', '2024-01-05', 'Revisi�n general de visi�n y control de opacidad leve.'),
-    ('2024-01-05', '2024-02-05', 'Inyecci�n intrav�trea aplicada sin complicaciones.'),
-    ('2024-01-10', '2024-02-10', 'Contin�a tratamiento con antihistam�nicos.'),
-    ('2024-01-15', '2024-02-15', 'Satisfactoria recuperaci�n postoperatoria de catarata.');
+    ('2023-07-28', '2023-08-28', 'Revisión postoperatoria. Sin complicaciones.'),
+    ('2023-09-01', '2023-10-01', 'Revisión de adaptaci�n a lentes progresivos.'),
+    ('2023-09-15', '2023-10-15', 'Continúa tratamiento para control de presión intraocular.'),
+    ('2023-09-20', '2023-10-20', 'Recomendación de control de glucosa y retinopatía.'),
+    ('2023-10-01', '2023-11-01', 'Adaptación adecuada a lentes. No hay molestias.'),
+    ('2023-11-01', '2023-12-01', 'Planificación de próxima cirugía de catarata.'),
+    ('2023-12-05', '2024-01-05', 'Revisión general de visión y control de opacidad leve.'),
+    ('2024-01-05', '2024-02-05', 'Inyección intravítrea aplicada sin complicaciones.'),
+    ('2024-01-10', '2024-02-10', 'Continúa tratamiento con antihistamínicos.'),
+    ('2024-01-15', '2024-02-15', 'Satisfactoria recuperación postoperatoria de catarata.');
 
 Select * from Seguimientos_PostOperatorios
 
-	-- Inserci�n de datos en la tabla
+	-- Inserción de datos en la tabla
 	INSERT INTO Medicamentos(Nombre_Medicamento, Descripcion_medicamento)
 	VALUES
-	('Timolol', 'Reductor de presi�n intraocular'),
+	('Timolol', 'Reductor de presión intraocular'),
 	('Latanoprost','Medicamento para el glaucoma'),
-	('Acetazolamida','Control de presi�n ocular'),
-	('Ciprofloxacino','Antibi�tico en gotas para infecciones oculares'),
-	('Atropina','Dilataci�n de pupilas para ex�menes'),
+	('Acetazolamida','Control de presión ocular'),
+	('Ciprofloxacino','Antibiótico en gotas para infecciones oculares'),
+	('Atropina','Dilatación de pupilas para exámenes'),
 	('Prednisolona','Anti-inflamatorio en gotas');
 	
 	DROP TABLE Especialidades
@@ -254,7 +254,7 @@ JOIN Diagnostico d
 ON M.Codigo_medico = d.Codigo_medico
 WHERE MONTH(d.Fecha_diagnostico) < 12 AND MONTH(d.Fecha_diagnostico) > 4 AND YEAR(d.Fecha_diagnostico) = 2024
 
-SELECT P.Nombres + ' ' + P.Apellidos AS 'Nombre y Apellido', C.Fecha_cirugia AS 'Realizaci�n cirugia', D.Fecha_diagnostico AS 'Realizaci�n de diagnostico'
+SELECT P.Nombres + ' ' + P.Apellidos AS 'Nombre y Apellido', C.Fecha_cirugia AS 'Realización cirugia', D.Fecha_diagnostico AS 'Realización de diagnostico'
 FROM Paciente P
 JOIN Diagnostico D
 ON D.Codigo_paciente = P.Codigo_paciente
